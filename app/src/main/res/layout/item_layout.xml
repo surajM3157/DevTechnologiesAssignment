@@ -11,7 +11,7 @@
         android:layout_marginHorizontal="2dp"
         android:backgroundTint="@color/white"
         card_view:cardCornerRadius="6dp"
-        card_view:cardElevation="8dp"
+        card_view:cardElevation="7dp"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -26,8 +26,7 @@
                 android:id="@+id/textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:textSize="23sp" />
+                android:text="-" />
 
             <ImageView
                 android:id="@+id/imageCut"
