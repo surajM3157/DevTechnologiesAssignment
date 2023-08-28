@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
 
@@ -18,15 +17,50 @@
         card_view:cardCornerRadius="6dp"
         card_view:cardElevation="10dp"
         card_view:cardUseCompatPadding="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
-            android:text="Select Disease"
-            android:textColor="#498A4F"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plz"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentStart="true"
+                android:textColor="#498A4F"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Disease"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="#498A4F"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="form list"
+                android:textColor="#498A4F"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="210dp"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_Recycler"

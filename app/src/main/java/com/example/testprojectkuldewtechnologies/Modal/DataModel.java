@@ -4,8 +4,8 @@ import java.util.List;
 
 public class DataModel {
 
+    public String itemText;
     private List<String> nestedList;
-    private String itemText;
     private boolean isExpandable;
     boolean isChecked;
 

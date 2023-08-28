@@ -1,15 +1,20 @@
 package com.example.testprojectkuldewtechnologies.Adapter;
 
+import android.content.DialogInterface;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,10 +24,10 @@ import com.example.testprojectkuldewtechnologies.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> /*implements NestedAdapter.NestedClickListener*/ {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     private List<DataModel> mList;
-    private List<String> list = new ArrayList<>();
+    public List<String> list = new ArrayList<>();
     private NestedAdapter.NestedClickListener nestedClickListener;
 
     public ItemAdapter(List<DataModel> mList, NestedAdapter.NestedClickListener nestedClickListener) {
@@ -66,26 +71,57 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 notifyItemChanged(holder.getAdapterPosition());
             }
         });
+
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
+                alertDialog.setTitle("Edit Text");
+                final EditText editText = new EditText(v.getContext());
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                alertDialog.setView(editText);
+                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String newText = editText.getText().toString();
+                        DataModel model = mList.get(holder.getAdapterPosition());
+                        model.itemText = newText;  // Update the text directly in the DataModel field
+                        notifyItemChanged(holder.getAdapterPosition());   // Notify adapter about the data change
+
+                        Toast.makeText(v.getContext(), "Updated Text: " + newText, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Cancel
+                    }
+                });
+                alertDialog.show();
+            }
+        });
+
+      /**  holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle click on cv view
+                list.clear(); // Clear the list in the NestedAdapter
+                adapter1.updateData(list); // Update NestedAdapter data
+                adapter1.setCheckboxState(false); // Set checkbox state to false in NestedAdapter
+                holder.nestedRecyclerView.getAdapter().notifyDataSetChanged(); // Notify NestedAdapter about the change
+
+                // Call the method in productFilterAdapter to remove the item
+                productFilterAdapter.removeItem(position);
+            }
+        });*/
+
     }
 
     @Override
     public int getItemCount() {
         return mList.size();
     }
-
-//    @Override
-//    public void onNestedItemClick(String nestedItem) {
-//        // Update the checked state of the nested item in the DataModel
-////        int adapterPosition = holder.getAdapterPosition(); // Get the adapter position of the main item
-////        DataModel dataModel = mList.get(adapterPosition);
-////        int nestedIndex = dataModel.getNestedList().indexOf(nestedItem);
-////
-////        if (nestedIndex != -1) {
-////            boolean isChecked = !dataModel.isNestedItemChecked(nestedIndex);
-////            dataModel.setNestedItemChecked(nestedIndex, isChecked);
-////            notifyItemChanged(adapterPosition);
-////        }
-//    }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout linearLayout;
@@ -105,5 +141,4 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             nestedRecyclerView = itemView.findViewById(R.id.child_rv);
         }
     }
-
 }

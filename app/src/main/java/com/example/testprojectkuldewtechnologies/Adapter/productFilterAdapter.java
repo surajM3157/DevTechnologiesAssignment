@@ -41,8 +41,8 @@ public class productFilterAdapter extends RecyclerView.Adapter<productFilterAdap
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                holder.cv.setVisibility(View.GONE);
-//                holder.textView.setVisibility(View.GONE);
+                data.remove(position);
+                notifyDataSetChanged();
             }
         });
     }

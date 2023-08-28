@@ -98,9 +98,10 @@ public class MainActivity extends AppCompatActivity implements NestedAdapter.Nes
     public void getData() {
         if (recycler != null) {
             Log.d("fjfhd", "sssss");
-            recycler.setLayoutManager(new LinearLayoutManager(MainActivity.this
-                    /*LinearLayoutManager.HORIZONTAL, true*/));
-            productFilterAdapter = new productFilterAdapter(MainActivity.this, stringList);
+            recycler.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+//            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//            recyclerView.setLayoutManager(layoutManager)
+            productFilterAdapter = new productFilterAdapter(MainActivity.this,stringList);
 //            Log.i("productFilterAdapter", "onCreate: "+stringList.size());
 //            productFilterAdapter.setCheckBoxClickListener(this);
             recycler.setAdapter(productFilterAdapter);
